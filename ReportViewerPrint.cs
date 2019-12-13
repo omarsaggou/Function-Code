@@ -22,11 +22,11 @@ using System.Windows;
         ///method to print reoprt after adding parameters
         public void PrintRepot(ClassName cln){
             try{
-                SalesOrderReport r = new SalesOrderReport();
+                var r = new SalesOrderReport();
                 ParameterFieldDefinitions pfds;
                 ParameterValues pvs;
                 ////
-                Parameterprint(r, cln.AttributeName, "AttributeName");                
+                Parameterprint(r, cln.AttributeName, "AttributeName",pfds,pvs);                
                 r.ReadRecords();
                 r.PrintToPrinter(2, true, 0, 0);
             }
@@ -36,10 +36,9 @@ using System.Windows;
         }
 
         //// method to add parameter manipuled on report
-        public void Parameterprint(ReportClass f, Object o, string parametername){
+        public void Parameterprint(ReportClass f, Object o, string parameternameParameterFieldDefinitions pfds,ParameterValues pvs){
             try{
-                ParameterFieldDefinitions pfds;
-                ParameterValues pvs;
+                
                 if (o != null)
                 {
                     ParameterFieldDefinition pfd;
@@ -54,8 +53,8 @@ using System.Windows;
                     pfd.ApplyCurrentValues(pvs);
                 }
             }
-            catch (Exception e1){
-                MessageBox.Show("l'erreur est " + e1.Message + " " + e1.InnerException);
+            catch (Exception exp){
+                MessageBox.Show("l'erreur est " + exp.Message + " " + e1.InnerException);
             }
         }
     }
